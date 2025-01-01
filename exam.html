@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Wife?</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .heart {
+      color: #FF1493;
+      font-size: 4rem;
+      position: absolute;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .heart:nth-child(1) {
+      top: 10%;
+      left: 5%;
+    }
+
+    .heart:nth-child(2) {
+      top: 15%;
+      right: 5%;
+    }
+
+    .heart:nth-child(3) {
+      top: 50%;
+      left: 30%;
+    }
+
+    .heart:nth-child(4) {
+      top: 75%;
+      right: 30%;
+    }
+
+    .queen {
+      font-size: 3rem;
+      color: #FFD700;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .button {
+      background-color: #FFD700;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin: 0 20px;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+    }
+
+    #no {
+      position: absolute;
+      left: 50%;
+      bottom: 20%;
+      transform: translateX(-50%);
+    }
+
+    #yes {
+      position: absolute;
+      left: 50%;
+      bottom: 30%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Confetti animation styles */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FFD700;
+      border-radius: 50%;
+      animation: confettiAnimation 2s infinite;
+    }
+
+    @keyframes confettiAnimation {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(100px) rotate(180deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(200px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Celebration message */
+    .celebration-message {
+      display: none;
+      font-size: 3rem;
+      color: #FF1493;
+      font-weight: bold;
+      margin-top: 50px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+  <div class="heart">❤️</div>
+
+  <div class="queen">👑</div>
+  
+  <!-- The question will be centered in the middle of the page -->
+  <div class="question">Will you be my wife?</div>
+
+  <button id="yes" class="button" onclick="celebrate()">Yes</button>
+  <button id="no" class="button" onmouseover="moveNoButton()">No</button>
+
+  <div id="celebrationMessage" class="celebration-message">Yay! 💍</div>
+
+  <script>
+    function moveNoButton() {
+      // Get the "No" button's position on screen
+      const noButton = document.getElementById("no");
+
+      // Randomize the "No" button's position slightly away from the cursor
+      const randomOffsetX = Math.random() * 100 - 50; // Move within a 100px range
+      const randomOffsetY = Math.random() * 100 - 50;
+
+      noButton.style.left = `${50 + randomOffsetX}%`; // Recalculate position for movement
+      noButton.style.bottom = `${20 + randomOffsetY}%`; // Randomize vertical position
+    }
+
+    function celebrate() {
+      // Show celebration message
+      const celebrationMessage = document.getElementById("celebrationMessage");
+      celebrationMessage.style.display = "block"; // Show the "Yay! 💍" message
+
+      // Show confetti animation
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        document.body.appendChild(confetti);
+
+        // Randomize confetti position and animation delay
+        confetti.style.left = `${Math.random() * window.innerWidth}px`;
+        confetti.style.animationDelay = `${Math.random() * 1}s`;
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+        }, 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
